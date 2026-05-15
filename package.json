@@ -1,0 +1,14 @@
+{
+  "name": "nozy-dashboard",
+  "version": "1.0.0",
+  "description": "NOZY H2S sensor dashboard",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "@parcel/transformer-css": "^2.15.4",
+    "parcel": "^2.15.4"
+  },
+  "devDependencies": {}
+}
