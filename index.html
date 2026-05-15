@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>NOZY H2S Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="module" src="./src/main.js"></script>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">NOZY Sensor Dashboard</p>
+          <h1>H2S Live Readings</h1>
+          <p class="muted">Device: <span id="device-id">esp-h2s-001</span></p>
+        </div>
+
+        <button id="refresh-button">Refresh</button>
+      </section>
+
+      <section class="cards">
+        <div class="card">
+          <p>Latest H2S</p>
+          <h2 id="latest-h2s">--</h2>
+        </div>
+
+        <div class="card">
+          <p>Baseline</p>
+          <h2 id="latest-baseline">--</h2>
+        </div>
+
+        <div class="card">
+          <p>Above Baseline</p>
+          <h2 id="latest-above">--</h2>
+        </div>
+
+        <div class="card">
+          <p>Status</p>
+          <h2 id="latest-alert">--</h2>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Recent readings</h2>
+          <p id="last-updated" class="muted">Not loaded yet</p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date/time</th>
+                <th>H2S</th>
+                <th>Baseline</th>
+                <th>Delta</th>
+                <th>Above baseline</th>
+                <th>Alert</th>
+              </tr>
+            </thead>
+            <tbody id="readings-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
