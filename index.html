@@ -6,61 +6,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script type="module" src="./src/main.js"></script>
   </head>
+
   <body>
-    <main class="page">
-      <section class="hero">
-        <div>
-          <p class="eyebrow">NOZY Sensor Dashboard</p>
-          <h1>H2S Live Readings</h1>
-          <p class="muted">Device: <span id="device-id">esp-h2s-001</span></p>
-        </div>
+    <main class="app-shell">
+      <nav class="top-nav">
+        <a class="brand" href="#/">
+          <span class="brand-mark"></span>
+          <span>NOZY</span>
+        </a>
 
-        <button id="refresh-button">Refresh</button>
+        <div class="nav-links">
+          <a href="#/" id="dashboard-link">Dashboard</a>
+          <a href="#/history" id="history-link">Previous readings</a>
+          <button id="refresh-button">Refresh</button>
+        </div>
+      </nav>
+
+      <section id="dashboard-page" class="page page-dashboard">
+        <section class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">NOZY Sensor Dashboard</p>
+            <h1>H2S Live Readings</h1>
+            <p class="hero-subtitle">
+              Real-time hydrogen sulfide monitoring from device
+              <span id="device-id">esp-h2s-001</span>.
+            </p>
+          </div>
+
+          <div class="status-orb" id="status-orb">
+            <span id="orb-status">Normal</span>
+          </div>
+        </section>
+
+        <section class="dashboard-layout">
+          <article class="metric-card main-metric">
+            <p class="metric-label">Latest H2S</p>
+            <h2 id="latest-h2s">--</h2>
+            <p class="metric-detail" id="last-updated">Waiting for data...</p>
+          </article>
+
+          <article class="metric-card">
+            <p class="metric-label">60-second average</p>
+            <h2 id="average-h2s">--</h2>
+            <p class="metric-detail">Average of recent readings</p>
+          </article>
+
+          <article class="metric-card">
+            <p class="metric-label">Difference</p>
+            <h2 id="difference-h2s">--</h2>
+            <p class="metric-detail">Latest minus 60-second average</p>
+          </article>
+
+          <article class="metric-card">
+            <p class="metric-label">Status</p>
+            <h2 id="latest-alert">--</h2>
+            <p class="metric-detail">Based on your device threshold</p>
+          </article>
+        </section>
+
+        <section class="mini-history">
+          <div>
+            <p class="eyebrow">Recent activity</p>
+            <h2>Latest snapshots</h2>
+          </div>
+
+          <a class="text-link" href="#/history">See previous readings →</a>
+        </section>
       </section>
 
-      <section class="cards">
-        <div class="card">
-          <p>Latest H2S</p>
-          <h2 id="latest-h2s">--</h2>
+      <section id="history-page" class="page page-history hidden">
+        <div class="history-header">
+          <div>
+            <p class="eyebrow">Previous readings</p>
+            <h1>Reading History</h1>
+            <p class="hero-subtitle">The most recent readings saved in DynamoDB.</p>
+          </div>
+
+          <a class="back-link" href="#/">← Back to dashboard</a>
         </div>
 
-        <div class="card">
-          <p>Baseline</p>
-          <h2 id="latest-baseline">--</h2>
-        </div>
+        <section class="panel">
+          <div class="panel-header">
+            <h2>Recent readings</h2>
+            <p id="history-updated" class="muted">Not loaded yet</p>
+          </div>
 
-        <div class="card">
-          <p>Above Baseline</p>
-          <h2 id="latest-above">--</h2>
-        </div>
-
-        <div class="card">
-          <p>Status</p>
-          <h2 id="latest-alert">--</h2>
-        </div>
-      </section>
-
-      <section class="panel">
-        <div class="panel-header">
-          <h2>Recent readings</h2>
-          <p id="last-updated" class="muted">Not loaded yet</p>
-        </div>
-
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Date/time</th>
-                <th>H2S</th>
-                <th>Baseline</th>
-                <th>Delta</th>
-                <th>Above baseline</th>
-                <th>Alert</th>
-              </tr>
-            </thead>
-            <tbody id="readings-body"></tbody>
-          </table>
-        </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date/time</th>
+                  <th>H2S</th>
+                  <th>Baseline</th>
+                  <th>Delta</th>
+                  <th>Above baseline</th>
+                  <th>Alert</th>
+                </tr>
+              </thead>
+              <tbody id="readings-body"></tbody>
+            </table>
+          </div>
+        </section>
       </section>
     </main>
   </body>
